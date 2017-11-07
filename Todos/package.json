@@ -2,13 +2,19 @@
   "name": "todos",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "webpack && electron dist",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "webpack && electron dist",
+    "build.electron": "ng build --base-href . --aot --prod && webpack -p",
+    "pack.mac": "npm run build.electron && cp package.json ./dist && electron-packager dist/ myApp --platform=darwin --arch=x64 --ignore=./node_modules/* --overwrite --out=bundles",
+    "pack.windows": "npm run build.electron && cp package.json ./dist && electron-packager dist/ myApp --platform=win32 --ignore=./node_modules/* --overwrite --out=bundles",
+    "pack.linux": "npm run build.electron && cp package.json ./dist && electron-packager dist/ myApp --platform=linux --ignore=./node_modules/* --overwrite --out=bundles"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +27,9 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "electron": "^1.7.9",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
@@ -33,6 +41,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
+    "electron-packager": "^9.1.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
@@ -42,8 +51,12 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "ts-loader": "^3.1.1",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
-  }
+    "typescript": "~2.4.2",
+    "webpack": "^3.8.1"
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.",
+  "author": ""
 }
