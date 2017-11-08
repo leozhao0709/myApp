@@ -1,0 +1,6 @@
+<div class="add-option-error" *ngIf="addoptionForm.get('option').getError('required')&&addoptionForm.dirty">Enter valid value to add item</div>
+<div class="add-option-error" *ngIf="addoptionForm.get('option').getError('optionExist')">This option already exists</div>
+<form class="add-option" [formGroup]="addoptionForm" (submit)="onSubmit()">
+  <input type="text" class="add-option__input" [formControlName]="'option'" />
+  <button class="button" type="submit">Add Option</button>
+</form>
