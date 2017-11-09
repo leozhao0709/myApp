@@ -11,7 +11,8 @@ app.on('ready', () => {
     width: 800,
     center: true,
     webPreferences: {
-      backgroundThrottling: false
+      backgroundThrottling: false,
+      nodeIntegration: false
     }
   });
 

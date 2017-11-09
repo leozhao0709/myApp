@@ -1,17 +1,40 @@
+$light-blue: #464b5e;
 @media screen and (min-width: 768px) {
   .modal:before {
     display: inline-block;
     vertical-align: middle;
-    content: " ";
+    content: "";
     height: 100%;
   }
 }
 
 .modal {
   text-align: center;
+  background-color: rgba(white, 0.75);
 }
 
 .modal-dialog {
   display: inline-block;
   vertical-align: middle;
+}
+
+.modal-content {
+  background-color: $light-blue;
+  padding: 0 5rem;
+}
+
+.modal-body {
+  color: white;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 0 3.2rem 0;
+  word-break: break-all;
 }

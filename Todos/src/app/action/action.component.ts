@@ -10,6 +10,7 @@ import { OptionsService } from '../options/options.service';
 export class ActionComponent implements OnInit {
 
   options: Option[];
+  selectedOption: Option;
 
   constructor(private _optionsService: OptionsService, ) {
     this.options = this._optionsService.options;
@@ -23,8 +24,7 @@ export class ActionComponent implements OnInit {
 
   onClick() {
     const randomNum = Math.floor(Math.random() * this.options.length);
-    const option = this.options[randomNum];
-    alert(option.name);
+    this.selectedOption = this.options[randomNum];
   }
 
 }
