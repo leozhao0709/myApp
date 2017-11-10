@@ -1,12 +1,19 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, HostBinding, EventEmitter, Output } from '@angular/core';
 import { OptionsService } from '../options.service';
+import { fadeTrigger } from '../../animations/fade';
+import { slideTrigger } from '../../animations/slide';
 
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
-  styleUrls: ['./option.component.scss']
+  styleUrls: ['./option.component.scss'],
+  animations: [
+    slideTrigger,
+    fadeTrigger
+  ]
 })
 export class OptionComponent implements OnInit {
+  @HostBinding('@fadeTriggerState') fade = true;
 
   @Input() taskName: string;
   @Input() index: number;
@@ -17,6 +24,6 @@ export class OptionComponent implements OnInit {
   }
 
   onRemove() {
-    this._optionsService.removeOption(this.taskName);
+    this._optionsService.removeOptionWithIndex(this.index - 1);
   }
 }

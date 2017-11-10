@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Option } from './option';
+import { OptionsEnum } from './options.enum';
 
 @Injectable()
 export class OptionsService {
@@ -7,7 +8,10 @@ export class OptionsService {
   private _options: Option[] = [];
   optionsChanged = new EventEmitter<Option[]>();
 
-  constructor() { }
+  constructor() {
+    const optionsJson = localStorage.getItem(OptionsEnum.optionsStorageKey);
+    this._options = optionsJson ? JSON.parse(optionsJson) : [];
+  }
 
 
   public get options(): Option[] {
@@ -24,10 +28,15 @@ export class OptionsService {
     this.optionsChanged.emit(this._options.slice());
   }
 
-  removeOption(name: string) {
+  removeOptionWithName(name: string) {
     this._options = this._options.filter((option: Option) => {
       return option.name !== name;
     });
+    this.optionsChanged.emit(this._options.slice());
+  }
+
+  removeOptionWithIndex(index: number) {
+    this._options.splice(index, 1);
     this.optionsChanged.emit(this._options.slice());
   }
 
@@ -38,5 +47,9 @@ export class OptionsService {
       }
     }
     return false;
+  }
+
+  saveOptionsToLocal() {
+    localStorage.setItem(OptionsEnum.optionsStorageKey, JSON.stringify(this._options));
   }
 }
