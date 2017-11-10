@@ -2,7 +2,7 @@ import { trigger, transition, style, animate, keyframes } from '@angular/animati
 
 export const slideTrigger = trigger('slideTriggerState', [
   transition(':enter', [
-    animate('600ms ease-in', keyframes([
+    animate('400ms ease-in', keyframes([
       style({
         opacity: 0,
         transform: 'translateX(-100%)'
@@ -14,7 +14,7 @@ export const slideTrigger = trigger('slideTriggerState', [
     ]))
   ]),
   transition(':leave', [
-    animate('600ms ease-in', keyframes([
+    animate('500ms ease-out', keyframes([
       style({
         opacity: 1,
         transform: 'translateX(0)'
