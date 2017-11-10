@@ -13,7 +13,8 @@ app.on('ready', () => {
     webPreferences: {
       backgroundThrottling: false,
       nodeIntegration: false
-    }
+    },
+    title: 'Todos'
   });
 
   mainWindow.loadURL(loadUrl);

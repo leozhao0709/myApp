@@ -1,7 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Option } from './option';
 import { OptionsService } from './options.service';
-import { fadeTrigger } from '../animations/fade';
 import { slideTrigger } from '../animations/slide';
 
 @Component({
@@ -9,8 +8,7 @@ import { slideTrigger } from '../animations/slide';
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
   animations: [
-    slideTrigger,
-    fadeTrigger
+    slideTrigger({ leaveDuration: '0ms' }),
   ]
 })
 export class OptionsComponent implements OnInit {

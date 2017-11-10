@@ -1,28 +1,36 @@
-import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+import { trigger, transition, style, animate, keyframes, animation, useAnimation } from '@angular/animations';
 
-export const slideTrigger = trigger('slideTriggerState', [
+const enterAnimation = animation([
+  animate('{{enterDuration}} ease-in', keyframes([
+    style({
+      opacity: 0,
+      transform: 'translateX(-100%)'
+    }),
+    style({
+      opacity: 1,
+      transform: 'translateX(0)'
+    })
+  ]))
+]);
+
+const leaveAnimation = animation([
+  animate('{{leaveDuration}} ease-out', keyframes([
+    style({
+      opacity: 1,
+      transform: 'translateX(0)'
+    }),
+    style({
+      opacity: 0,
+      transform: 'translateX(100%)'
+    })
+  ]))
+]);
+
+export const slideTrigger = ({ enterDurtion = '400ms', leaveDuration = '400ms' } = {}) => trigger('slideTriggerState', [
   transition(':enter', [
-    animate('400ms ease-in', keyframes([
-      style({
-        opacity: 0,
-        transform: 'translateX(-100%)'
-      }),
-      style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })
-    ]))
+    useAnimation(enterAnimation, { params: { enterDuration: enterDurtion } })
   ]),
   transition(':leave', [
-    animate('500ms ease-out', keyframes([
-      style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      }),
-      style({
-        opacity: 0,
-        transform: 'translateX(100%)'
-      })
-    ]))
+    useAnimation(leaveAnimation, { params: { leaveDuration: leaveDuration } })
   ]),
 ]);
