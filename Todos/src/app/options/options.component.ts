@@ -8,7 +8,7 @@ import { slideTrigger } from '../animations/slide';
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
   animations: [
-    slideTrigger({ leaveDuration: '0ms' }),
+    slideTrigger,
   ]
 })
 export class OptionsComponent implements OnInit {

@@ -8,7 +8,7 @@ import { fadeTrigger } from './animations/fade';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    fadeTrigger()
+    fadeTrigger
   ]
 })
 export class AppComponent {
